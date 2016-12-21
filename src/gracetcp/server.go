@@ -1,6 +1,7 @@
 package gracetcp
 
 import (
+	"errors"
 	"fmt"
 	"net"
 	"os"
@@ -70,6 +71,8 @@ func listenSignals(li *Listener) {
 func stopOldProcess(li *Listener) {
 	fmt.Println("stopOldProcess")
 	li.Close()
+
+	//errors.New("timeout")
 }
 
 func startNewProcess(li *Listener) error {

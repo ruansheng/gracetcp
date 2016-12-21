@@ -18,7 +18,10 @@ func main() {
 		client_conn, err := server_conn.Accept()
 		fmt.Println("client_conn:", client_conn)
 		if err != nil {
-			break
+			if nerr, ok := err.(net.Error); ok && nerr.Timeout() {
+				fmt.Println("timeout break")
+				break
+			}
 		}
 		go HandleConnection(client_conn)
 	}
