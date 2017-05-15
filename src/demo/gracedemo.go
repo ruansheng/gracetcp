@@ -27,12 +27,9 @@ func main() {
 	}
 
 	fmt.Println("main:end")
-
-	// 退出for循环，等待处理都结束
-	(*server_conn).Wait()
 }
 
-func HandleConnection(conn *net.Conn) {
+func HandleConnection(conn *gracetcp.Conn) {
 	defer func() {
 		fmt.Println("1")
 		(*conn).Close()
